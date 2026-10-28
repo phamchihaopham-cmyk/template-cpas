@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPAS Performance Report</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/page.css">
+</head>
+<body>
+<div id="dash-root">
+<p class="cp-banner" hidden></p>
+<div class="cp">
+  <header class="cp-head">
+    <div class="cp-brand">
+      <div class="cp-logo">CPAS</div>
+      <div>
+        <h1>CPAS Performance Report</h1>
+        <p>Meta Collaborative Ads × Shopee · Actual so với Plan</p>
+      </div>
+    </div>
+    <div class="cp-chips">
+      <select class="cp-sel" data-draw="month" data-source="months" aria-label="Chọn tháng"></select>
+      <span class="cp-chip" data-draw="range" data-source="months">—</span>
+      <span class="cp-chip" data-draw="planSource">—</span>
+      <button type="button" class="cp-chip cp-reload">↻ Tải lại dữ liệu</button>
+    </div>
+  </header>
+
+  <div class="cp-body">
+    <nav class="cp-nav" aria-label="Các trang report">
+      <ol>
+        <li><a href="#overview">1. Tổng quan vs Plan</a></li>
+        <li><a href="#plan">2. Actual vs Plan theo tháng</a></li>
+        <li><a href="#trends">3. Xu hướng theo ngày</a></li>
+        <li><a href="#funnel">4. Phễu chuyển đổi</a></li>
+        <li><a href="#splits">5. Phân bổ</a></li>
+        <li><a href="#audtype">6. Prospecting / Retargeting × loại chiến dịch</a></li>
+        <li><a href="#bytype">7. Theo loại chiến dịch vs plan</a></li>
+        <li><a href="#byproduct">8. Theo ngành hàng</a></li>
+        <li><a href="#creative">9. Creative theo post code</a></li>
+        <li><span>10. Insights &amp; next steps</span></li>
+      </ol>
+      <p class="cp-navnote">Actual và Plan đọc trực tiếp từ Google Sheet mỗi lần mở trang. Nếu sheet Plan trống, plan được tự dựng từ actual (xem cuối trang).</p>
+    </nav>
+
+    <main class="cp-main">
+      <section class="cp-sec" id="overview">
+        <h2>Tổng quan so với Plan</h2>
+        <p class="cp-take">Tháng <b data-draw="mlabel" data-source="months">—</b>: GMV đạt <b data-draw="kpi" data-metric="gmv" data-field="ach" data-fmt="pct0" data-source="kpis">—</b> plan, ROAS <b data-draw="kpi" data-metric="roas" data-field="actual" data-fmt="x" data-source="kpis">—</b> so với target <b data-draw="kpi" data-metric="roas" data-field="plan" data-fmt="x" data-source="kpis">—</b>, đã tiêu <b data-draw="kpi" data-metric="spend" data-field="ach" data-fmt="pct0" data-source="kpis">—</b> ngân sách tính đến ngày có dữ liệu.</p>
+        <div class="cp-tiles">
+          <div class="cp-card cp-tile"><div class="lbl">GMV (shared items)</div><div class="val" data-draw="kpi" data-metric="gmv" data-field="actual" data-fmt="vnd" data-source="kpis">—</div><div class="pl" data-draw="kpi" data-metric="gmv" data-field="plan" data-fmt="planvnd" data-source="kpis">—</div><div class="chg" data-draw="ach" data-metric="gmv" data-better="up" data-source="kpis">—</div><div class="chg" data-draw="mom" data-metric="gmv" data-better="up" data-source="kpis">—</div></div>
+          <div class="cp-card cp-tile"><div class="lbl">ROAS (shared items)</div><div class="val" data-draw="kpi" data-metric="roas" data-field="actual" data-fmt="x" data-source="kpis">—</div><div class="pl" data-draw="kpi" data-metric="roas" data-field="plan" data-fmt="planx" data-source="kpis">—</div><div class="chg" data-draw="ach" data-metric="roas" data-better="up" data-source="kpis">—</div><div class="chg" data-draw="mom" data-metric="roas" data-better="up" data-source="kpis">—</div></div>
+          <div class="cp-card cp-tile"><div class="lbl">Purchases</div><div class="val" data-draw="kpi" data-metric="purchases" data-field="actual" data-fmt="int" data-source="kpis">—</div><div class="pl" data-draw="kpi" data-metric="purchases" data-field="plan" data-fmt="planint" data-source="kpis">—</div><div class="chg" data-draw="ach" data-metric="purchases" data-better="up" data-source="kpis">—</div><div class="chg" data-draw="mom" data-metric="purchases" data-better="up" data-source="kpis">—</div></div>
+          <div class="cp-card cp-tile"><div class="lbl">Chi phí (Spend)</div><div class="val" data-draw="kpi" data-metric="spend" data-field="actual" data-fmt="vnd" data-source="kpis">—</div><div class="pl" data-draw="kpi" data-metric="spend" data-field="plan" data-fmt="planvnd" data-source="kpis">—</div><div class="chg" data-draw="ach" data-metric="spend" data-better="pace" data-source="kpis">—</div><div class="chg" data-draw="mom" data-metric="spend" data-better="none" data-source="kpis">—</div></div>
+          <div class="cp-card cp-tile"><div class="lbl">CPP (chi phí / đơn)</div><div class="val" data-draw="kpi" data-metric="cpp" data-field="actual" data-fmt="vnd" data-source="kpis">—</div><div class="pl" data-draw="kpi" data-metric="cpp" data-field="plan" data-fmt="planvnd" data-source="kpis">—</div><div class="chg" data-draw="ach" data-metric="cpp" data-better="down" data-source="kpis">—</div><div class="chg" data-draw="mom" data-metric="cpp" data-better="down" data-source="kpis">—</div></div>
+          <div class="cp-card cp-tile"><div class="lbl">CVR (click → mua)</div><div class="val" data-draw="kpi" data-metric="cvr" data-field="actual" data-fmt="pct2" data-source="kpis">—</div><div class="pl" data-draw="kpi" data-metric="cvr" data-field="plan" data-fmt="planpct" data-source="kpis">—</div><div class="chg" data-draw="ach" data-metric="cvr" data-better="up" data-source="kpis">—</div><div class="chg" data-draw="mom" data-metric="cvr" data-better="up" data-source="kpis">—</div></div>
+        </div>
+        <p class="cp-sub">“% plan” = actual / plan. Tháng chưa hết thì plan được chia theo số ngày đã qua. MoM so với cùng số ngày đầu tháng trước. Với CPP, dưới 100% plan là tốt.</p>
+      </section>
+
+      <section class="cp-sec" id="plan">
+        <h2>Actual vs Plan theo tháng</h2>
+        <div class="cp-grid2">
+          <div class="cp-card">
+            <h3>GMV actual so với plan</h3>
+            <p class="note">Bấm vào một cột để xem tháng đó · tháng cuối là số đến ngày có dữ liệu</p>
+            <div class="cp-legend"><span><i style="background:#ee4d2d"></i>GMV actual</span><span><i class="dash"></i>GMV plan</span></div>
+            <div class="cp-chart tall dash-skeleton" data-draw="planGmv" data-source="monthly"></div>
+          </div>
+          <div class="cp-card">
+            <h3>Chi phí actual so với ngân sách</h3>
+            <p class="note">Ngân sách plan theo tháng, cộng tất cả loại chiến dịch</p>
+            <div class="cp-legend"><span><i style="background:#1877f2"></i>Spend actual</span><span><i class="dash"></i>Ngân sách plan</span></div>
+            <div class="cp-chart tall dash-skeleton" data-draw="planSpend" data-source="monthly"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cp-sec" id="trends">
+        <h2>Xu hướng theo ngày trong tháng</h2>
+        <div class="cp-grid3">
+          <div class="cp-card">
+            <h3>Chi phí &amp; ROAS</h3>
+            <p class="note">Cột: chi phí/ngày · Đường: ROAS (trục phải)</p>
+            <div class="cp-legend"><span><i style="background:var(--cds-chart-muted)"></i>Spend</span><span><i class="ln" style="background:#ee4d2d"></i>ROAS</span></div>
+            <div class="cp-chart dash-skeleton" data-draw="trendSpend" data-source="trend"></div>
+          </div>
+          <div class="cp-card">
+            <h3>Add to cart &amp; Purchases</h3>
+            <p class="note">Sự kiện của sản phẩm brand, Shopee gửi về Meta</p>
+            <div class="cp-legend"><span><i class="ln" data-draw="sw" data-i="0"></i>Add to cart</span><span><i class="ln" data-draw="sw" data-i="1"></i>Purchases</span></div>
+            <div class="cp-chart dash-skeleton" data-draw="trendConv" data-source="trend"></div>
+          </div>
+          <div class="cp-card">
+            <h3>CTR &amp; CVR</h3>
+            <p class="note">CTR = link click / impression · CVR = purchase / link click</p>
+            <div class="cp-legend"><span><i class="ln" data-draw="sw" data-i="2"></i>CTR</span><span><i class="ln" data-draw="sw" data-i="3"></i>CVR</span></div>
+            <div class="cp-chart dash-skeleton" data-draw="trendRate" data-source="trend"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cp-sec" id="funnel">
+        <h2>Phễu chuyển đổi về Shopee</h2>
+        <div class="cp-card">
+          <h3>Actual so với plan, từng bước</h3>
+          <p class="note">Thanh màu: actual · vạch xám: plan · dòng nghiêng: tỷ lệ sang bước sau (actual / plan), bước thấp hơn plan nhiều nhất tô đỏ</p>
+          <div class="cp-funnel dash-skeleton" data-draw="funnel" data-source="funnel"></div>
+        </div>
+      </section>
+
+      <section class="cp-sec" id="splits">
+        <h2>Phân bổ trong tháng</h2>
+        <div class="cp-grid3">
+          <div class="cp-card">
+            <h3>Chi phí theo loại khán giả</h3>
+            <p class="note">Prospecting so với Retargeting</p>
+            <div class="cp-donut dash-skeleton" data-draw="donut" data-dim="audience_type" data-metric="spend" data-source="splits"></div>
+          </div>
+          <div class="cp-card">
+            <h3>GMV theo loại chiến dịch</h3>
+            <p class="note">AWO (always-on), Promotion, Livestream</p>
+            <div class="cp-donut dash-skeleton" data-draw="donut" data-dim="campaign_type" data-metric="gmv" data-source="splits"></div>
+          </div>
+          <div class="cp-card">
+            <h3>Purchases theo định dạng quảng cáo</h3>
+            <p class="note">Carousel, Single, Collection, Video</p>
+            <div class="cp-donut dash-skeleton" data-draw="donut" data-dim="ad_format" data-metric="purchases" data-source="splits"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cp-sec" id="audtype">
+        <h2>Prospecting và Retargeting theo loại chiến dịch</h2>
+        <div class="cp-grid2">
+          <div class="cp-card" id="aud-prospecting">
+            <h3>Prospecting</h3>
+            <p class="note">Cột: chi phí theo loại chiến dịch · chấm: ROAS (trục phải)</p>
+            <div class="cp-legend"><span><i style="background:#1877f2"></i>Spend</span><span><i class="ln" style="background:#ee4d2d"></i>ROAS</span></div>
+            <div class="cp-chart dash-skeleton" data-draw="audChart" data-aud="Prospecting" data-source="aud_type"></div>
+            <div class="cp-tablewrap" style="margin-top:var(--cds-gap-md)">
+              <table class="cp-table" data-source="aud_type" data-row-key="month,audience_type,campaign_type">
+                <thead><tr>
+                  <th data-field="campaign_type">Loại chiến dịch</th>
+                  <th data-field="spend">Spend</th>
+                  <th data-field="spend_share">% spend</th>
+                  <th data-field="ctr">CTR</th>
+                  <th data-field="add_to_cart">ATC</th>
+                  <th data-field="purchases">Purchases</th>
+                  <th data-field="cvr">CVR</th>
+                  <th data-field="gmv">GMV</th>
+                  <th data-field="roas">ROAS</th>
+                  <th data-field="cpp">CPP</th>
+                </tr></thead>
+                <tbody data-draw="audTable" data-aud="Prospecting" data-source="aud_type"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="cp-card" id="aud-retargeting">
+            <h3>Retargeting</h3>
+            <p class="note">Cột: chi phí theo loại chiến dịch · chấm: ROAS (trục phải)</p>
+            <div class="cp-legend"><span><i style="background:#1877f2"></i>Spend</span><span><i class="ln" style="background:#ee4d2d"></i>ROAS</span></div>
+            <div class="cp-chart dash-skeleton" data-draw="audChart" data-aud="Retargeting" data-source="aud_type"></div>
+            <div class="cp-tablewrap" style="margin-top:var(--cds-gap-md)">
+              <table class="cp-table" data-source="aud_type" data-row-key="month,audience_type,campaign_type">
+                <thead><tr>
+                  <th data-field="campaign_type">Loại chiến dịch</th>
+                  <th data-field="spend">Spend</th>
+                  <th data-field="spend_share">% spend</th>
+                  <th data-field="ctr">CTR</th>
+                  <th data-field="add_to_cart">ATC</th>
+                  <th data-field="purchases">Purchases</th>
+                  <th data-field="cvr">CVR</th>
+                  <th data-field="gmv">GMV</th>
+                  <th data-field="roas">ROAS</th>
+                  <th data-field="cpp">CPP</th>
+                </tr></thead>
+                <tbody data-draw="audTable" data-aud="Retargeting" data-source="aud_type"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p class="cp-sub">“% spend” là tỷ trọng chi phí trong cùng nhóm khán giả. Dòng Tổng cộng là cả nhóm khán giả trong tháng.</p>
+      </section>
+
+      <section class="cp-sec" id="bytype">
+        <h2>Theo loại chiến dịch, so với plan</h2>
+        <div class="cp-card cp-tablewrap">
+          <table class="cp-table" data-source="type_table" data-row-key="month,campaign_type">
+            <thead><tr>
+              <th data-field="campaign_type">Loại chiến dịch</th>
+              <th data-field="spend">Spend</th>
+              <th data-field="spend_plan">Plan spend</th>
+              <th data-field="spend_ach">% plan</th>
+              <th data-field="gmv">GMV</th>
+              <th data-field="gmv_plan">Plan GMV</th>
+              <th data-field="gmv_ach">% plan</th>
+              <th data-field="roas">ROAS</th>
+              <th data-field="roas_plan">ROAS target</th>
+              <th data-field="purchases">Purchases</th>
+              <th data-field="purchases_plan">Plan purchases</th>
+              <th data-field="cpp">CPP</th>
+            </tr></thead>
+            <tbody data-draw="typetable" data-source="type_table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cp-sec" id="byproduct">
+        <h2>Theo ngành hàng</h2>
+        <div class="cp-card cp-tablewrap">
+          <p class="note">Theo cột List Product trong data source, sắp xếp theo GMV</p>
+          <table class="cp-table" data-source="product_table" data-row-key="month,product">
+            <thead><tr>
+              <th data-field="product">Ngành hàng</th>
+              <th data-field="spend">Spend</th>
+              <th data-field="clicks">Link clicks</th>
+              <th data-field="add_to_cart">Add to cart</th>
+              <th data-field="purchases">Purchases</th>
+              <th data-field="gmv">GMV</th>
+              <th data-field="gmv_share">% GMV</th>
+              <th data-field="roas">ROAS</th>
+              <th data-field="cpp">CPP</th>
+            </tr></thead>
+            <tbody data-draw="prodtable" data-source="product_table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cp-sec" id="creative">
+        <h2>Creative theo post code (Angle Content)</h2>
+        <div class="cp-seg" role="group" aria-label="Nhóm khán giả cho phần creative">
+          <button type="button" class="cp-segbtn" data-aud="all">Tất cả</button>
+          <button type="button" class="cp-segbtn" data-aud="Prospecting">Prospecting</button>
+          <button type="button" class="cp-segbtn" data-aud="Retargeting">Retargeting</button>
+        </div>
+        <div class="cp-grid2">
+          <div class="cp-card">
+            <h3>Nhận xét: post code nào tốt</h3>
+            <p class="note">Tự sinh từ số liệu tháng đang chọn, chỉ xét post code đủ chi phí</p>
+            <div class="cp-insight">
+              <p class="cp-isum" data-draw="creativeSummary" data-source="creative_table">—</p>
+              <h4 class="cp-ih good">Nên giữ và đẩy thêm ngân sách</h4>
+              <ul class="cp-ilist" data-draw="creativeList" data-kind="good" data-source="creative_table"></ul>
+              <h4 class="cp-ih bad">Cần xem lại hoặc thay creative</h4>
+              <ul class="cp-ilist" data-draw="creativeList" data-kind="bad" data-source="creative_table"></ul>
+            </div>
+          </div>
+          <div class="cp-card">
+            <h3>Chi phí và ROAS của từng post code</h3>
+            <p class="note">Mỗi chấm là một post code, to theo số đơn · vạch đứt: ROAS trung bình tháng</p>
+            <div class="cp-legend"><span><i style="background:var(--color-ok)"></i>Tốt</span><span><i style="background:var(--cds-chart-muted)"></i>Ổn</span><span><i style="background:var(--color-bad)"></i>Kém</span><span><i style="background:var(--color-border-line)"></i>Ít data</span></div>
+            <div class="cp-chart tall dash-skeleton" data-draw="creativeScatter" data-source="creative_table"></div>
+          </div>
+        </div>
+        <div class="cp-card cp-tablewrap" style="margin-top:var(--cds-gap-md)">
+          <h3>Bảng post code</h3>
+          <p class="note">Sắp xếp theo chi phí. Đánh giá: Tốt khi ROAS ≥ 1,2 lần TB và CVR ≥ TB; Kém khi ROAS &lt; 0,8 lần TB; Ít data khi chi phí dưới 3% tổng tháng.</p>
+          <table class="cp-table" data-source="creative_table" data-row-key="month,scope,angle">
+            <thead><tr>
+              <th data-field="angle">Post code</th>
+              <th data-field="verdict">Đánh giá</th>
+              <th data-field="campaign_types">Loại chiến dịch</th>
+              <th data-field="spend">Spend</th>
+              <th data-field="ctr">CTR</th>
+              <th data-field="cpc">CPC</th>
+              <th data-field="add_to_cart">ATC</th>
+              <th data-field="purchases">Purchases</th>
+              <th data-field="cvr">CVR</th>
+              <th data-field="gmv">GMV</th>
+              <th data-field="roas">ROAS</th>
+              <th data-field="roas_index">ROAS / TB</th>
+              <th data-field="cpp">CPP</th>
+            </tr></thead>
+            <tbody data-draw="creativeTable" data-source="creative_table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="cp-foot">Plan lấy từ sheet Plan. Khi sheet Plan trống, plan tự dựng như sau: ngân sách mỗi tháng theo loại chiến dịch làm tròn từ mức chi thực tế (tháng đang chạy được quy ra cả tháng). Target hiệu quả (CPM, CPC, tỷ lệ ATC, CVR, ROAS) lấy trung bình 3 tháng trước, cải thiện thêm 5% cho ATC, CVR và ROAS. Tháng đầu tiên có dữ liệu là tháng gốc, không có uplift. Purchases, GMV, ROAS chỉ tính sản phẩm của brand (shared items).</footer>
+    </main>
+  </div>
+</div>
+</div>
+<script src="config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/runtime.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
